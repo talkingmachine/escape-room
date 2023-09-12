@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
-import RouterPaths from "../const/routerPaths";
+import { Link } from 'react-router-dom';
+import RouterPaths from '../const/routerPaths';
 
 function LoginPage (): JSX.Element {
   return (
@@ -50,11 +50,15 @@ function LoginPage (): JSX.Element {
                 <button className="btn btn--accent btn--general login-form__submit" type="submit">Войти</button>
               </div>
               <label className="custom-checkbox login-form__checkbox">
-                <input type="checkbox" id="id-order-agreement" name="user-agreement" required /><span className="custom-checkbox__icon">
+                <input type="checkbox" id="id-order-agreement" name="user-agreement" required />
+                <span className="custom-checkbox__icon">
                   <svg width={20} height={17} aria-hidden="true">
                     <use xlinkHref="#icon-tick" />
-                  </svg></span><span className="custom-checkbox__label">Я&nbsp;согласен с
-                  <a className="link link--active-silver link--underlined" href="#">правилами обработки персональных данных</a>&nbsp;и пользовательским соглашением</span>
+                  </svg>
+                </span>
+                <span className="custom-checkbox__label">Я&nbsp;согласен с
+                  <a className="link link--active-silver link--underlined" href="#">правилами обработки персональных данных</a>&nbsp;и пользовательским соглашением
+                </span>
               </label>
             </form>
           </div>
@@ -64,26 +68,32 @@ function LoginPage (): JSX.Element {
         <div className="container container--size-l">
           <div className="socials">
             <ul className="socials__list">
-              <li className="socials__item"><a className="socials__link" href="#" aria-label="Skype" target="_blank" rel="nofollow noopener noreferrer">
+              <li className="socials__item">
+                <a className="socials__link" href="#" aria-label="Skype" target="_blank" rel="nofollow noopener noreferrer">
                   <svg className="socials__icon socials__icon--default" width={28} height={28} aria-hidden="true">
                     <use xlinkHref="#icon-skype-default" />
                   </svg>
                   <svg className="socials__icon socials__icon--interactive" width={28} height={28} aria-hidden="true">
                     <use xlinkHref="#icon-skype-interactive" />
-                  </svg></a></li>
-              <li className="socials__item"><a className="socials__link" href="#" aria-label="ВКонтакте" target="_blank" rel="nofollow noopener noreferrer">
+                  </svg>
+                </a>
+              </li>
+              <li className="socials__item">
+                <a className="socials__link" href="#" aria-label="ВКонтакте" target="_blank" rel="nofollow noopener noreferrer">
                   <svg className="socials__icon socials__icon--default" width={28} height={28} aria-hidden="true">
                     <use xlinkHref="#icon-vk-default" />
                   </svg>
                   <svg className="socials__icon socials__icon--interactive" width={28} height={28} aria-hidden="true">
                     <use xlinkHref="#icon-vk-interactive" />
-                  </svg></a></li>
+                  </svg>
+                </a>
+              </li>
             </ul>
           </div>
         </div>
       </footer>
     </div>
-  )
+  );
 }
 
 export default LoginPage;

@@ -659,7 +659,7 @@ function MainPage (): JSX.Element {
         </div>
       </footer>
     </div>
-  )
+  );
 }
 
 export default MainPage;

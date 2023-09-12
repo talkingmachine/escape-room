@@ -349,7 +349,7 @@ function BookingPage (): JSX.Element {
         </div>
       </footer>
     </div>
-  )
+  );
 }
 
 export default BookingPage;
