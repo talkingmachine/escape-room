@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import RouterPaths from '../const/routerPaths';
+import RouterPaths from '../const/router-paths';
 import ContactsMap from '../components/contacts/contacts-map';
 
 

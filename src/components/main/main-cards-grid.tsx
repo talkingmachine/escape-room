@@ -1,14 +1,17 @@
+import { Link } from 'react-router-dom';
 import { difficultLevels, questTypes } from '../../const/consts';
 import { useAppSelector } from '../../hooks/typed-wrappers';
-import getGridCards from '../../mock/mock-main';
-import dataToCards from '../../utils/data-to-cards';
+import { getGridCards } from '../../mock/mock-main';
+import { dataToCards } from '../../utils/data-to-text';
+import RouterPaths from '../../const/router-paths';
+import { GridCard } from '../../types/types';
 
 
 function MainCardsGrid (): JSX.Element {
 
   const currentFilters = useAppSelector((state) => state.currentFilters);
 
-  const dataGrid = getGridCards();
+  const dataGrid = getGridCards() as GridCard[];
   const cardsGrid = dataToCards(
     dataGrid.filter((card) =>
       currentFilters.questType === questTypes.all ?
@@ -25,7 +28,7 @@ function MainCardsGrid (): JSX.Element {
   return (
     <div className="cards-grid">
       {cardsGrid.map((card) => (
-        <div key={card.id} className="quest-card">
+        <div key={card.id} className="quest-card" >
           <div className="quest-card__img">
             <picture>
               <source
@@ -43,9 +46,9 @@ function MainCardsGrid (): JSX.Element {
           </div>
           <div className="quest-card__content">
             <div className="quest-card__info-wrapper">
-              <a className="quest-card__link" href="quest.html">
+              <Link className="quest-card__link" to={`${RouterPaths.quest}${card.id}`}>
                 {card.title}
-              </a>
+              </Link>
             </div>
             <ul className="tags quest-card__tags">
               <li className="tags__item">

@@ -1,6 +1,6 @@
 enum RouterPaths {
   main = '/',
-  quest = '/quest',
+  quest = '/quest/',
   login = '/login',
   booking = '/booking',
   myQuests = '/my-quests',

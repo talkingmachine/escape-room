@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import MainPage from '../pages/main-page';
-import RouterPaths from '../const/routerPaths';
+import RouterPaths from '../const/router-paths';
 import { Suspense } from 'react';
 import QuestPage from '../pages/quest-page';
 import LoginPage from '../pages/login-page';
@@ -18,7 +18,7 @@ function App (): JSX.Element {
           </Suspense>
         }
         />
-        <Route path={RouterPaths.quest} element={
+        <Route path={`${RouterPaths.quest}:id`} element={
           <Suspense>
             <QuestPage/>
           </Suspense>

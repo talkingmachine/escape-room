@@ -1,5 +1,7 @@
 import { difficultLevels, questTypes } from '../const/consts';
 
+type PeopleMinMaxType = [number] | [number, number]
+
 type GridCard = {
   id: string;
   title: string;
@@ -7,7 +9,7 @@ type GridCard = {
   previewImgWebp: string;
   level: difficultLevels;
   type: questTypes;
-  peopleMinMax: [number] | [number, number];
+  peopleMinMax: PeopleMinMaxType;
 }
 
-export type {GridCard};
+export type {GridCard, PeopleMinMaxType};
