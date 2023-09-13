@@ -5,8 +5,8 @@ enum RouterPaths {
   booking = '/booking',
   myQuests = '/my-quests',
   contacts = '/contacts'
-
 }
+
 
 export default RouterPaths;
 
