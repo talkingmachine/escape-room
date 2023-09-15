@@ -1,4 +1,5 @@
 import { difficultLevels, questTypes } from '../const/consts';
+import { store } from '../store';
 
 type PeopleMinMaxType = [number] | [number, number]
 
@@ -12,4 +13,17 @@ type GridCard = {
   peopleMinMax: PeopleMinMaxType;
 }
 
-export type {GridCard, PeopleMinMaxType};
+type AuthData = {
+  email: string;
+  password: string;
+}
+
+type UserData = {
+  token: string;
+}
+
+type State = ReturnType<typeof store.getState>;
+
+type AppDispatch = typeof store.dispatch;
+
+export type {GridCard, PeopleMinMaxType, UserData, AuthData, State, AppDispatch};

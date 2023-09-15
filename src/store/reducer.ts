@@ -1,6 +1,7 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { setFilterDifficultLevel, setFilterQuestType } from './actions';
-import { difficultLevels, questTypes } from '../const/consts';
+import { AuthorizationStatus, difficultLevels, questTypes } from '../const/consts';
+import { checkAuthAction, loginAction } from './api-actions';
 
 
 const initialState = {
@@ -8,10 +9,7 @@ const initialState = {
     questType: questTypes.all,
     difficultLevel: difficultLevels.any
   },
-  // sentences: {
-  //   current: '',
-  //   future: ''
-  // },
+  authorizationStatus: AuthorizationStatus.NoAuth,
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -21,8 +19,19 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(setFilterDifficultLevel, (state, action) => {
       state.currentFilters.difficultLevel = action.payload;
+    })
+    .addCase(checkAuthAction.fulfilled, (state) => { // async actions
+      state.authorizationStatus = AuthorizationStatus.Auth;
+      console.log('auth fulfilled');
+    })
+    .addCase(checkAuthAction.rejected, (state) => {
+      state.authorizationStatus = AuthorizationStatus.NoAuth;
+      console.log('auth rejected');
+    })
+    .addCase(loginAction.fulfilled, (state) => {
+      state.authorizationStatus = AuthorizationStatus.Auth;
+      console.log('authorized first time');
     });
-
 
   // .addCase(setName, (state, action) => {
   //   state.name = action.payload;

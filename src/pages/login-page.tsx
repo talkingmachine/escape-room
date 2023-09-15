@@ -1,7 +1,40 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import RouterPaths from '../const/router-paths';
+import { FieldValues, useForm } from 'react-hook-form';
+import { loginAction } from '../store/api-actions';
+import { AuthData } from '../types/types';
+import { useAppDispatch, useAppSelector } from '../hooks/typed-wrappers';
+import { AuthorizationStatus } from '../const/consts';
+import { useEffect } from 'react';
+import { ErrorMessage } from '@hookform/error-message';
 
 function LoginPage (): JSX.Element {
+
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const locationState = useLocation();
+  const authorizeStatus = useAppSelector((state) => state.authorizationStatus);
+
+  const { register, formState:{errors}, handleSubmit } = useForm();
+  const onSubmit = (data: FieldValues) => {
+    const auth = data as AuthData;
+    dispatch(loginAction({authData: {
+      email: auth.email,
+      password: auth.password
+    }}));
+  };
+
+  useEffect(() => {
+    if (authorizeStatus === AuthorizationStatus.Auth) {
+      if (locationState.state) {
+        navigate(`${RouterPaths.booking}/${locationState.state as string}`);
+      } else {
+        navigate(RouterPaths.main);
+      }
+    }
+  });
+
+
   return (
     <div className="wrapper">
       <header className="header">
@@ -34,17 +67,31 @@ function LoginPage (): JSX.Element {
         </div>
         <div className="container container--size-l">
           <div className="login__form">
-            <form className="login-form" action="https://echo.htmlacademy.ru/" method="post">
+            <form className="login-form" onSubmit={(event) => void handleSubmit(onSubmit)(event)}> {/*typescript eslint & react-form conflict, solved by disabling eslint https://github.com/orgs/react-hook-form/discussions/8622, or... */}
               <div className="login-form__inner-wrapper">
                 <h1 className="title title--size-s login-form__title">Вход</h1>
                 <div className="login-form__inputs">
                   <div className="custom-input login-form__input">
                     <label className="custom-input__label" htmlFor="email">E&nbsp;–&nbsp;mail</label>
-                    <input type="email" id="email" name="email" placeholder="Адрес электронной почты" required />
+                    <input type="email" id="email" placeholder="Адрес электронной почты"
+                      {...register('email', {
+                        required: 'Введите Email',
+                        pattern: { value: /^\S+@\S+$/i, message: 'Введите корректный Email' }
+                      })}
+                    />
+                    <ErrorMessage errors={errors} name="email" />
                   </div>
                   <div className="custom-input login-form__input">
                     <label className="custom-input__label" htmlFor="password">Пароль</label>
-                    <input type="password" id="password" name="password" placeholder="Пароль" required />
+                    <input type="password" id="password" placeholder="Пароль"
+                      {...register('password', {
+                        required: 'Введите пароль',
+                        maxLength: { value: 15, message: 'Пароль должен быть не длиннее 15 символов' },
+                        minLength: { value: 3, message: 'Пароль должен быть не короче 3 символов' },
+                        pattern:  { value: /(\d+)([a-zA-Z]+)|([a-zA-Z]+)(\d+)/g, message: 'Пароль должен содержать хотя бы одну букву и одну цифру' }
+                      })} // one digit and one alpha, 3-15 length
+                    />
+                    <ErrorMessage errors={errors} name="password" />
                   </div>
                 </div>
                 <button className="btn btn--accent btn--general login-form__submit" type="submit">Войти</button>
