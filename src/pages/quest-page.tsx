@@ -59,7 +59,7 @@ function QuestPage (): JSX.Element {
               </li>
             </ul>
             <p className="quest-page__description">{dataMock.description}</p>
-            <a className="btn btn--accent btn--cta quest-page__btn" href="booking.html">Забронировать</a>
+            <Link className="btn btn--accent btn--cta quest-page__btn" to={RouterPaths.login} state={ dataMock.id } >Забронировать</Link>
           </div>
         </div>
       </main>

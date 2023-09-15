@@ -14,4 +14,10 @@ enum difficultLevels {
   any = 'any'
 }
 
-export {difficultLevels, questTypes};
+enum AuthorizationStatus {
+  Auth = 'AUTH',
+  NoAuth = 'NO_AUTH',
+  Uknown = 'UKNOWN'
+}
+
+export {difficultLevels, questTypes, AuthorizationStatus};
