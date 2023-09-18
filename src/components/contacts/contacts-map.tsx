@@ -1,23 +1,24 @@
 import { useRef } from 'react';
 import useMap from '../../hooks/use-map';
 import leaflet from 'leaflet';
-
-const deleteData = { //TOREMOVE
-  lat: 59.968325,
-  lng: 30.317421,
-  zoom: 16.4
-};
+import defaultMarkerIcon from '../../../public/img/svg/pin-active.svg';
+import { defaultContactsMapData } from '../../const/consts';
 
 function ContactsMap() {
   const mapRef = useRef(null);
-  const map = useMap(mapRef, deleteData); //TOREMOVE
-
+  const map = useMap(mapRef, defaultContactsMapData);
+  const activeMarker = new leaflet.Icon({
+    iconUrl: defaultMarkerIcon,
+    iconSize: [27, 39],
+    iconAnchor: [13.5, 39]
+  });
   if (map) {
     leaflet
       .marker({
-        lat: deleteData.lat, //TOREMOVE
-        lng: deleteData.lng, //TOREMOVE
+        lat: defaultContactsMapData.lat,
+        lng: defaultContactsMapData.lng,
       })
+      .setIcon(activeMarker)
       .addTo(map);
   }
 

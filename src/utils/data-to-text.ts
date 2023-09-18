@@ -1,23 +1,35 @@
-import { difficultLevels, questTypes } from '../const/consts';
-import { GridCard, PeopleMinMaxType } from '../types/types';
+import { allowedDate, difficultLevels, questTypes } from '../const/consts';
+import { Quest } from '../types/types';
 
-const levelLocalize = {
-  [difficultLevels.easy]: 'Легкий',
-  [difficultLevels.middle]: 'Средний',
-  [difficultLevels.hard]: 'Сложный',
-  [difficultLevels.any]: 'Любой'
-};
+// const levelLocalize = {
+//   [difficultLevels.easy]: 'Легкий',
+//   [difficultLevels.medium]: 'Средний',
+//   [difficultLevels.hard]: 'Сложный',
+//   [difficultLevels.any]: 'Любой'
+// };
+const timeToText = (day: allowedDate, time: string): string => `${day}/${time}`;
 
 const difficultLevelDataToText = (data: difficultLevels) => {
   switch(data) {
     case difficultLevels.easy: {
       return 'Легкий';
     }
-    case difficultLevels.middle: {
+    case difficultLevels.medium: {
       return 'Средний';
     }
     case difficultLevels.hard: {
       return 'Сложный';
+    }
+  }
+};
+
+const dayToText = (data: allowedDate) => {
+  switch(data) {
+    case allowedDate.today: {
+      return 'сегодня';
+    }
+    case allowedDate.tomorrow: {
+      return 'завтра';
     }
   }
 };
@@ -42,14 +54,11 @@ const questTypeDataToText = (data: questTypes) => {
   }
 };
 
-const peopleMinMaxDataToText = (data: PeopleMinMaxType) => data.length === 2 ? `${data[0]}-${data[1]}` : `${data[0]}`;
-
-function dataToCards (data: GridCard[]) {
+function dataToCards (data: Quest[]) {
   return data.map((item) => ({
     ...item,
-    level: levelLocalize[item.level],
-    peopleMinMax: peopleMinMaxDataToText(item.peopleMinMax)
+    level: difficultLevelDataToText(item.level),
   }));
 }
 
-export {dataToCards, difficultLevelDataToText, questTypeDataToText, peopleMinMaxDataToText};
+export {dataToCards, difficultLevelDataToText, questTypeDataToText, timeToText, dayToText};

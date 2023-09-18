@@ -3,6 +3,7 @@ import { useAppDispatch } from '../../hooks/typed-wrappers';
 import { setFilterDifficultLevel, setFilterQuestType } from '../../store/actions';
 
 function MainFilters (): JSX.Element {
+
   const dispatch = useAppDispatch();
 
   const questTypesChangeHandler = (questType: questTypes) => {
@@ -121,7 +122,7 @@ function MainFilters (): JSX.Element {
           </li>
           <li className="filter__item">
             <input type="radio" name="level" id="middle" />
-            <label className="filter__label" htmlFor="middle" onClick={() => questDifficultLevelChangeHandler(difficultLevels.middle)}>
+            <label className="filter__label" htmlFor="middle" onClick={() => questDifficultLevelChangeHandler(difficultLevels.medium)}>
               <span className="filter__label-text">Средний</span>
             </label>
           </li>

@@ -1,4 +1,4 @@
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import RouterPaths from '../const/router-paths';
 import { FieldValues, useForm } from 'react-hook-form';
 import { loginAction } from '../store/api-actions';
@@ -7,13 +7,15 @@ import { useAppDispatch, useAppSelector } from '../hooks/typed-wrappers';
 import { AuthorizationStatus } from '../const/consts';
 import { useEffect } from 'react';
 import { ErrorMessage } from '@hookform/error-message';
+import Header from '../components/header';
+import Footer from '../components/footer';
 
 function LoginPage (): JSX.Element {
 
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const locationState = useLocation();
-  const authorizeStatus = useAppSelector((state) => state.authorizationStatus);
+  const location = useLocation();
+  const authorizeStatus = useAppSelector((state) => state.DATA.authorizationStatus);
 
   const { register, formState:{errors}, handleSubmit } = useForm();
   const onSubmit = (data: FieldValues) => {
@@ -26,8 +28,8 @@ function LoginPage (): JSX.Element {
 
   useEffect(() => {
     if (authorizeStatus === AuthorizationStatus.Auth) {
-      if (locationState.state) {
-        navigate(`${RouterPaths.booking}/${locationState.state as string}`);
+      if (location.state) {
+        navigate(`${RouterPaths.booking}/${location.state as string}`, { state: location.state as string });
       } else {
         navigate(RouterPaths.main);
       }
@@ -37,28 +39,7 @@ function LoginPage (): JSX.Element {
 
   return (
     <div className="wrapper">
-      <header className="header">
-        <div className="container container--size-l">
-          <Link className="logo header__logo" to={RouterPaths.main} aria-label="Перейти на Главную">
-            <svg width={134} height={52} aria-hidden="true">
-              <use xlinkHref="#logo" />
-            </svg>
-          </Link>
-          <nav className="main-nav header__main-nav">
-            <ul className="main-nav__list">
-              <li className="main-nav__item">
-                <Link className="link not-disabled active" to={RouterPaths.main}>Квесты</Link>
-              </li>
-              <li className="main-nav__item">
-                <Link className="link" to={RouterPaths.contacts}>Контакты</Link>
-              </li>
-            </ul>
-          </nav>
-          <div className="header__side-nav">
-            <a className="link header__side-item header__phone-link" href="tel:88003335599">8 (000) 111-11-11</a>
-          </div>
-        </div>
-      </header>
+      <Header isLoginPage/>
       <main className="decorated-page login">
         <div className="decorated-page__decor" aria-hidden="true">
           <picture>
@@ -111,34 +92,7 @@ function LoginPage (): JSX.Element {
           </div>
         </div>
       </main>
-      <footer className="footer">
-        <div className="container container--size-l">
-          <div className="socials">
-            <ul className="socials__list">
-              <li className="socials__item">
-                <a className="socials__link" href="#" aria-label="Skype" target="_blank" rel="nofollow noopener noreferrer">
-                  <svg className="socials__icon socials__icon--default" width={28} height={28} aria-hidden="true">
-                    <use xlinkHref="#icon-skype-default" />
-                  </svg>
-                  <svg className="socials__icon socials__icon--interactive" width={28} height={28} aria-hidden="true">
-                    <use xlinkHref="#icon-skype-interactive" />
-                  </svg>
-                </a>
-              </li>
-              <li className="socials__item">
-                <a className="socials__link" href="#" aria-label="ВКонтакте" target="_blank" rel="nofollow noopener noreferrer">
-                  <svg className="socials__icon socials__icon--default" width={28} height={28} aria-hidden="true">
-                    <use xlinkHref="#icon-vk-default" />
-                  </svg>
-                  <svg className="socials__icon socials__icon--interactive" width={28} height={28} aria-hidden="true">
-                    <use xlinkHref="#icon-vk-interactive" />
-                  </svg>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </footer>
+      <Footer/>
     </div>
   );
 }
