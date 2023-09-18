@@ -1,10 +1,12 @@
 const APIRoutes = {
   Login: ():string => '/v1/escape-room/login',
-  Logout: ():string => '/logout',
-  // Hotels: ():string => '/hotels',
-  // Comments: (id: string):string => `/comments/${id}`,
-  // Hotel: (id: string):string => `/hotels/${id}`,
-  // Nearby: (id: string):string => `/hotels/${id}/nearby`,
+  GetQuestsList: ():string => '/v1/escape-room/quest',
+  GetQuest: (id: string):string => `/v1/escape-room/quest/${id}`,
+  GetBookingInfo: (id: string):string => `/v1/escape-room/quest/${id}/booking`,
+  GetBookedQuests: ():string => '/v1/escape-room/reservation',
+  PostBookingData: (id: string):string => `/v1/escape-room/quest/${id}/booking`,
+  RemoveReservation: (id: string):string => `/v1/escape-room/reservation/${id}`,
+  Logout: ():string => '/v1/escape-room/logout',
 };
 
 export default APIRoutes;

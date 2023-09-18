@@ -8,7 +8,7 @@ function getQuestData() {
         'previewImgWebp': 'https://{server-url}/static/quest/sklep.webp',
         'level': 'easy',
         'type': 'adventures',
-        'peopleMinMax': [5],
+        'peopleMinMax': [5, 6],
         'description': 'Средневековое кладбище таит в себе много страшных тайн. Местные жители говорят, что в склепе похоронен граф вампир, который по ночам выходит на охоту, чтобы испить человеческой крови. Через час солнце опустится за горизонт, успеете ли вы убить вампира и выбраться из склепа?',
         'coverImg': 'https://{server-url}/static/quest/sklep@2x.jpg',
         'coverImgWebp': 'https://{server-url}/static/quest/sklep@2x.webp'
@@ -27,7 +27,7 @@ function getGridCards() {
         previewImgWebp: 'https://{server-url}/static/quest/sklep.webp',
         level: 'easy',
         type: 'mystic',
-        peopleMinMax: [5]
+        peopleMinMax: [5, 7]
       },
       {
         id: '2',

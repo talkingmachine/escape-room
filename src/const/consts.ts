@@ -1,15 +1,31 @@
+const defaultContactsMapData = {
+  lat: 59.968325,
+  lng: 30.317421,
+  zoom: 16.4
+};
+
+export enum ReducerNameSpaces {
+  states = 'STATES',
+  data = 'DATA'
+}
+
 enum questTypes {
   all = 'all',
   adventures = 'adventures',
   horror = 'horror',
   mystic = 'mystic',
   detective = 'detective',
-  sciFi = 'sciFi'
+  sciFi = 'sci-fi'
+}
+
+enum allowedDate {
+  today = 'today',
+  tomorrow = 'tomorrow'
 }
 
 enum difficultLevels {
   easy = 'easy',
-  middle = 'middle',
+  medium = 'medium',
   hard = 'hard',
   any = 'any'
 }
@@ -20,4 +36,4 @@ enum AuthorizationStatus {
   Uknown = 'UKNOWN'
 }
 
-export {difficultLevels, questTypes, AuthorizationStatus};
+export {difficultLevels, questTypes, AuthorizationStatus, allowedDate, defaultContactsMapData};
