@@ -4,6 +4,7 @@ import { dayToText, difficultLevelDataToText } from '../../utils/data-to-text';
 import { getBookedQuests } from '../../store/api-actions';
 import { removeReservation } from '../../services/api-requests';
 import MyQuestsEmpty from './my-quests-empty';
+import RouterPaths from '../../const/router-paths';
 
 function MyQuestsCardsGrid (): JSX.Element {
 
@@ -16,7 +17,7 @@ function MyQuestsCardsGrid (): JSX.Element {
     });
   };
 
-  if (bookedQuests.length) {
+  if (bookedQuests && bookedQuests.length) {
     return (
       <div className="cards-grid">
         {bookedQuests.map((bookedQuest) => (
@@ -29,7 +30,7 @@ function MyQuestsCardsGrid (): JSX.Element {
             </div>
             <div className="quest-card__content">
               <div className="quest-card__info-wrapper">
-                <Link className="quest-card__link" to="quest.html">{bookedQuest.quest.title}</Link> {/*//CHANGE LINK */}
+                <Link className="quest-card__link" to={`${RouterPaths.quest}/${bookedQuest.quest.id}`}>{bookedQuest.quest.title}</Link>
                 <span className="quest-card__info">[{dayToText(bookedQuest.date)},&nbsp;{bookedQuest.time}. {bookedQuest.location.address}]</span>
               </div>
               <ul className="tags quest-card__tags">

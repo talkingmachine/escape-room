@@ -1,6 +1,6 @@
 
 import { createSlice } from '@reduxjs/toolkit';
-import { AuthorizationStatus, ReducerNameSpaces, allowedDate, difficultLevels, questTypes } from '../../const/consts';
+import { AuthorizationStatus, ReducerNameSpaces, difficultLevels, questTypes } from '../../const/consts';
 import { BookedQuest, Place, Quest, QuestPage } from '../../types/types';
 import { checkAuthAction, getBookedQuests, getBookingInfo, getQuest, getQuestsList, loginAction } from '../api-actions';
 
@@ -9,7 +9,7 @@ type InitialStateType = {
   questsList: Quest[];
   questPage: QuestPage;
   bookingInfo: Place[];
-  bookedQuests: BookedQuest[];
+  bookedQuests: BookedQuest[] | null;
 }
 
 const initialState: InitialStateType = {
@@ -63,33 +63,7 @@ const initialState: InitialStateType = {
       }
     }
   ],
-  bookedQuests: [
-    {
-      'date': allowedDate.today,
-      'time': '14:00',
-      'contactPerson': 'Oliver',
-      'phone': '899911122233',
-      'withChildren': true,
-      'peopleCount': 3,
-      'id': '0c5fa01d-e89c-478d-9b85-799cf4abe29f',
-      'location': {
-        'address': 'Набережная реки Карповки, 5П',
-        'coords': [
-          30.317359,
-          50.123456
-        ]
-      },
-      'quest': {
-        'id': 'aba664c3-bdf3-4fb3-b8f3-42e007864bbf',
-        'title': 'Склеп',
-        'previewImg': 'https://{server-url}/static/quest/sklep.jpg',
-        'previewImgWebp': 'https://{server-url}/static/quest/sklep.webp',
-        'level': difficultLevels.easy,
-        'type': questTypes.adventures,
-        'peopleMinMax': [ 3, 6 ]
-      }
-    }
-  ]
+  bookedQuests: null
 };
 
 
@@ -100,7 +74,7 @@ const dataSlice = createSlice({
   },
   extraReducers(builder) {
     builder
-      .addCase(checkAuthAction.fulfilled, (state) => { // async actions
+      .addCase(checkAuthAction.fulfilled, (state) => {
         state.authorizationStatus = AuthorizationStatus.Auth;
       })
       .addCase(checkAuthAction.rejected, (state) => {

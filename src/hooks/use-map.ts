@@ -21,7 +21,7 @@ function useMap(mapRef:MutableRefObject<HTMLElement | null>, center:CenterType):
         zoom: center.zoom,
       });
       leaflet
-        .tileLayer( //http://tile2.maps.2gis.com/tiles?x={x}& y={y}& z={z}
+        .tileLayer(
           'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png'
         )
         .addTo(instance);

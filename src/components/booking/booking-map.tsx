@@ -37,7 +37,7 @@ function BookingMap (): JSX.Element{
   }
   useEffect(() => {
     const bookingData = dispatch(getBookingInfo({id: location.state as string}));
-    bookingData.then((data) => { // first setting currentPlace
+    bookingData.then((data) => {
       const castedData = data.payload as Place[];
       dispatch(setCurrentPlace(castedData[0]));
     });
