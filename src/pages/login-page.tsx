@@ -48,7 +48,7 @@ function LoginPage (): JSX.Element {
         </div>
         <div className="container container--size-l">
           <div className="login__form">
-            <form className="login-form" onSubmit={(event) => void handleSubmit(onSubmit)(event)}> {/*typescript eslint & react-form conflict, solved by disabling eslint https://github.com/orgs/react-hook-form/discussions/8622, or... */}
+            <form className="login-form" onSubmit={(event) => void handleSubmit(onSubmit)(event)}>
               <div className="login-form__inner-wrapper">
                 <h1 className="title title--size-s login-form__title">Вход</h1>
                 <div className="login-form__inputs">
@@ -57,7 +57,7 @@ function LoginPage (): JSX.Element {
                     <input type="email" id="email" placeholder="Адрес электронной почты"
                       {...register('email', {
                         required: 'Введите Email',
-                        pattern: { value: /^\S+@\S+$/i, message: 'Введите корректный Email' }
+                        pattern: { value: /^((([0-9A-Za-z]{1}[-0-9A-z.]{1,}[0-9A-Za-z]{1})|([0-9А-Яа-я]{1}[-0-9А-я.]{1,}[0-9А-Яа-я]{1}))@([-A-Za-z]{1,}\.){1,2}[-A-Za-z]{2,})$/u, message: 'Введите корректный Email' }
                       })}
                     />
                     <ErrorMessage errors={errors} name="email" />
@@ -70,7 +70,7 @@ function LoginPage (): JSX.Element {
                         maxLength: { value: 15, message: 'Пароль должен быть не длиннее 15 символов' },
                         minLength: { value: 3, message: 'Пароль должен быть не короче 3 символов' },
                         pattern:  { value: /(\d+)([a-zA-Z]+)|([a-zA-Z]+)(\d+)/g, message: 'Пароль должен содержать хотя бы одну букву и одну цифру' }
-                      })} // one digit and one alpha, 3-15 length
+                      })}
                     />
                     <ErrorMessage errors={errors} name="password" />
                   </div>

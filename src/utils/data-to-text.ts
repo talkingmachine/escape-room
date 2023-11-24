@@ -1,12 +1,6 @@
 import { allowedDate, difficultLevels, questTypes } from '../const/consts';
 import { Quest } from '../types/types';
 
-// const levelLocalize = {
-//   [difficultLevels.easy]: 'Легкий',
-//   [difficultLevels.medium]: 'Средний',
-//   [difficultLevels.hard]: 'Сложный',
-//   [difficultLevels.any]: 'Любой'
-// };
 const timeToText = (day: allowedDate, time: string): string => `${day}/${time}`;
 
 const difficultLevelDataToText = (data: difficultLevels) => {
